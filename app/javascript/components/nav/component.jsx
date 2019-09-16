@@ -99,6 +99,11 @@ const Nav = () => {
       disableOffline: true
     },
     {
+      name: i18n.t("navigation.key_performance_indicators"),
+      to: ROUTES.key_performance_indicators,
+      icon: "key_performance_indicators"
+    },
+    {
       name: i18n.t("navigation.bulk_exports"),
       to: ROUTES.exports,
       icon: "exports",

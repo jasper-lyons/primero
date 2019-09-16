@@ -95,6 +95,10 @@ export default [
         actions: READ_RECORDS
       },
       {
+        path: "/key-performance-indicators",
+        component: Page.KeyPerformanceIndicators
+      },
+      {
         path: ROUTES.reports,
         component: Reports,
         resources: RESOURCES.reports,

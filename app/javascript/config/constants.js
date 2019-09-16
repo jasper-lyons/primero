@@ -90,6 +90,7 @@ export const ROUTES = {
   matches: "/matches",
   not_authorized: "/not-authorized",
   reports: "/reports",
+  key_performance_indicators: '/key_performance_indicators',
   support: "/support",
   tasks: "/tasks",
   tracing_requests: "/tracing_requests",
