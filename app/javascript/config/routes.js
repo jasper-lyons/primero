@@ -96,7 +96,9 @@ export default [
       },
       {
         path: "/key-performance-indicators",
-        component: Page.KeyPerformanceIndicators
+        component: Page.KeyPerformanceIndicators,
+        permissionType: "reports",
+        permission: ["read", "group_read", "manage"]
       },
       {
         path: ROUTES.reports,
