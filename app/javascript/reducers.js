@@ -15,6 +15,7 @@ import { reducers as requestApprovalReducers } from "./components/record-actions
 import * as PotentialMatches from "./components/pages/potential-matches";
 import * as Report from "./components/pages/report";
 import * as Reports from "./components/pages/reports-list";
+import * as KeyPerformanceIndicators from "./components/pages/key-performance-indicators";
 import * as Support from "./components/pages/support";
 import * as TaskList from "./components/pages/task-list";
 import * as UsersList from "./components/pages/admin/users-list";
@@ -48,7 +49,6 @@ const rootReducer = {
             IndexFilters.reducers(i),
             requestApprovalReducers(i)
           );
-
           return o;
         }, {})
       },
@@ -71,7 +71,8 @@ const rootReducer = {
       ...ExportList.reducers,
       ...Support.reducers,
       ...Flagging.reducers,
-      ...SavedSearches.reducers
+      ...SavedSearches.reducers,
+      ...KeyPerformanceIndicators.reducers
     }),
     transferApprovalReducers,
     revokeTransitionReducers
