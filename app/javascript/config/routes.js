@@ -95,7 +95,7 @@ export default [
         actions: READ_RECORDS
       },
       {
-        path: "/key-performance-indicators",
+        path: ROUTES.key_performance_indicators,
         component: Page.KeyPerformanceIndicators,
         permissionType: "reports",
         permission: ["read", "group_read", "manage"]
