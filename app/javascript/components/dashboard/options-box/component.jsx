@@ -5,9 +5,18 @@ import PropTypes from "prop-types";
 import React from "react";
 
 import styles from "./styles.css";
+import { theme } from "config";
 
 const OptionsBox = ({ title, action, children, to, flat }) => {
   const css = makeStyles(styles)();
+
+  const titleTypographyCss = makeStyles({
+    root: {
+      fontWeight: '900',
+      fontSize: theme.typography.pxToRem(17),
+      textTransform: 'uppercase'
+    }
+  })();
 
   return (
     <Card className={css.card} elevation={flat ? 0 : 3}>
