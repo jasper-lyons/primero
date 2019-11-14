@@ -14,7 +14,8 @@ import Login, {
   UserGroupsList,
   UserGroupsForm,
   AgenciesList,
-  AgenciesForm
+  AgenciesForm,
+  KeyPerformanceIndicators 
 } from "../components/pages";
 import RecordForm from "../components/record-form";
 import RecordList from "../components/record-list";
@@ -96,7 +97,7 @@ export default [
       },
       {
         path: ROUTES.key_performance_indicators,
-        component: Page.KeyPerformanceIndicators,
+        component: KeyPerformanceIndicators,
         permissionType: "reports",
         permission: ["read", "group_read", "manage"]
       },
