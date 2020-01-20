@@ -81,6 +81,12 @@ Rails.application.routes.draw do
       resources :permissions, only: [:index]
       resources :user_groups
       resources :primero_modules, only: %i[index show update]
+
+      resources :key_performance_indicators do
+        collection do
+          get :number_of_cases
+        end
+      end
     end
   end
 end
