@@ -7,24 +7,14 @@ module Api::V2
     # provide this information.
     skip_after_action :write_audit_log
 
-    def indexed_field_name(type, field_name)
-      # TODO: Check if there can be duplicate field names
-      Sunspot::Setup.for(type).
-        all_field_factories.
-        map(&:build).
-        select { |field| field.name == field_name }.
-        map { |field| field.indexed_name }.
-        first
-    end
-
     def number_of_cases
-      created_at = indexed_field_name(Child, :created_at)
-      owned_by_location = indexed_field_name(Child, :owned_by_location)
+      created_at = SolrUtils.indexed_field_name(Child, :created_at)
+      owned_by_location = SolrUtils.indexed_field_name(Child, :owned_by_location)
 
       search = Child.search do
         facet :created_at,
           tag: :per_month,
-          range: from..to,
+          range: from...to,
           range_interval: '+1MONTH',
           minimum_count: -1
 
@@ -35,8 +25,9 @@ module Api::V2
         paginate page: 1, per_page: 0
       end
 
-      @columns = search.facet(:created_at).rows.
-        map { |result| result.value.first.iso8601(0) }
+      @columns = (from...to).
+        map { |d| DateTime.new(d.year, d.month, 1, 0, 0, 0, to.zone).utc.iso8601 }.
+        uniq
 
       @data = search.pivot(:owned_by_location).rows.
         map do |row|
@@ -80,11 +71,11 @@ module Api::V2
 
     # TODO: Add these to permitted params
     def from
-      params[:from]
+      DateTime.parse(params[:from])
     end
 
     def to
-      params[:to]
+      DateTime.parse(params[:to])
     end
   end
 end
