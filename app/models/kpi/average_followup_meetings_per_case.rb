@@ -4,7 +4,10 @@ module KPI
       ActiveRecord::Base.connection.execute(
         ActiveRecord::Base.sanitize_sql_array([%{
           select
-            count(gbv_follow_up_subform_sections->>'followup_date') / count(distinct cases.id)::float as average_followup_meetings_per_case
+            case count(distinct cases.id)
+              when 0 then 0
+              else count(gbv_follow_up_subform_sections->>'followup_date') / count(distinct cases.id)::float
+            end as average_followup_meetings_per_case
           from
             cases,
             jsonb_array_elements(data->'action_plan_form') action_plan_forms,

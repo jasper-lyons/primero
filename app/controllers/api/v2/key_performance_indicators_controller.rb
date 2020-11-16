@@ -1,12 +1,5 @@
 # frozen_string_literal: true
 
-# Controller for Key Performance Indicator Metrics
-#
-# Making Changes:
-#
-#   KPIs exist as queries against Solr and Postgres. These queries make use
-#   of Sunspot and ActiveRecord respectively. They reside either:
-#
 class Api::V2::KeyPerformanceIndicatorsController < ApplicationApiController
   def show
     authorize! kpi_permission, KPI
