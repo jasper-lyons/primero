@@ -22,4 +22,11 @@ class FormSectionResponse < ValueObject
 
     response[name.to_s]
   end
+
+  def subform(name)
+    FormSectionResponseList.new(
+      responses: field(name).flatten,
+      form_section: form_section&.fields&.find_by(name: name)&.subform
+    )
+  end
 end

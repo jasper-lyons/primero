@@ -27,6 +27,17 @@ class GbvKpiCalculationService
       .any?(&:complete?)
   end
 
+  def completed_and_approved_action_plan
+    form_responses(:action_plan_form)
+      .any? do |response|
+        action_plan_complete = response
+          .subform(:action_plan_section)
+          .any?(:complete)
+
+        action_plan_complete && response.field(:action_plan_approved)
+      end
+  end
+
   def services_provided
     form_responses(:action_plan_form)
       .subform(:gbv_follow_up_subform_section)
