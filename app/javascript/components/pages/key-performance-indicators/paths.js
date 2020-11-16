@@ -1,1 +1,1 @@
-export const forKPI = identifier => `kpi/${identifier}`;
+export const forKPI = identifier => `kpis/${identifier}`;
