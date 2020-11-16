@@ -9,6 +9,7 @@ import Login, {
   FormBuilder,
   FormsList,
   LocationsList,
+  KeyPerformanceIndicators,
   LookupsForm,
   LookupsList,
   NotAuthorized,
@@ -107,6 +108,12 @@ export default [
         path: "/tracing_requests",
         component: RecordList,
         actions: READ_RECORDS
+      },
+      {
+        path: ROUTES.key_performance_indicators,
+        component: KeyPerformanceIndicators,
+        permissionType: "reports",
+        permission: ["read", "group_read", "manage"]
       },
       {
         path: `${ROUTES.reports}/new`,

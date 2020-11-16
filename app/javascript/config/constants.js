@@ -133,6 +133,7 @@ export const ROUTES = {
   not_authorized: "/not-authorized",
   reports: "/reports",
   reports_new: "/reports/new",
+  key_performance_indicators: "/key_performance_indicators",
   support: "/support",
   tasks: "/tasks",
   tracing_requests: "/tracing_requests",
@@ -151,7 +152,8 @@ export const PERMITTED_URL = [
   ROUTES.support,
   ROUTES.cases,
   ROUTES.tracing_requests,
-  ROUTES.incidents
+  ROUTES.incidents,
+  ROUTES.key_performance_indicators
 ];
 
 export const DATE_FORMAT = "dd-MMM-yyyy";
@@ -308,6 +310,13 @@ export const APPLICATION_NAV = (permissions, userId) => {
       actions: READ_REPORTS,
       disableOffline: true,
       validateWithUserPermissions: true
+    },
+    {
+      name: "navigation.key_performance_indicators",
+      to: ROUTES.key_performance_indicators,
+      icon: "key_performance_indicators",
+      resources: [],
+      actions: []
     },
     {
       name: "navigation.bulk_exports",
