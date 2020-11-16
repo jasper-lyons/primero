@@ -4,6 +4,7 @@ module KPI
       Child.search do
         with :status, Record::STATUS_OPEN
         with :created_at, from..to
+        with :owned_by_groups, owned_by_groups
 
         facet :completed_action_plan, only: true
       end

@@ -41,6 +41,7 @@ module KPI
       @search ||= search_model.search do
         with restricted_field.name, from..to
         without :duplicate, true
+        with :owned_by_groups, owned_by_groups
 
         adjust_solr_params do |params|
           params[:facet] = true

@@ -37,6 +37,8 @@ module KPI
     # rubocop:disable Metrics/MethodLength
     def search
       @search ||= search_model.search do
+        with :owned_by_groups, owned_by_groups
+
         adjust_solr_params do |params|
           params.merge!(
             'facet': true,

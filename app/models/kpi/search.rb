@@ -1,5 +1,5 @@
 module KPI
-  SearchValue = Struct.new(:from, :to)
+  SearchValue = Struct.new(:from, :to, :owned_by_groups)
 
   class Search < SearchValue
     def self.find(id)

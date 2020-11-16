@@ -13,6 +13,7 @@ module KPI
       Child.search do
         with :status, Record::STATUS_OPEN
         with :created_at, from..to
+        with :owned_by_groups, owned_by_groups
 
         adjust_solr_params do |params|
           params[:facet] = true

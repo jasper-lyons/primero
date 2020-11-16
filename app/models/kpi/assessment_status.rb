@@ -4,6 +4,7 @@ module KPI
       @search ||= Child.search do
         with :status, Record::STATUS_OPEN
         with :created_at, from..to
+        with :owned_by_groups, owned_by_groups
 
         facet :completed_survivor_assessment, only: true
       end
