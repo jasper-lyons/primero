@@ -4,10 +4,7 @@ class GbvKpiCalculationService
   end
 
   def completed_survivor_assessment
-    FormSectionResponse.new(
-      response: @child.data,
-      form_section: FormSection.find_by(unique_id: 'survivor_assessment_form')
-    ).complete?
+    form_responses(:survivor_assessment_form).any?(&:complete?)
   end
 
   def requires_safety_plan?
@@ -18,10 +15,7 @@ class GbvKpiCalculationService
   alias safety_plan_required requires_safety_plan?
 
   def completed_safety_plan
-    safety_plans = form_responses(:safety_plan)
-                   .select { |response| response.field(:safety_plan_needed) == 'yes' }
-
-    !safety_plans.empty? && safety_plans.all?(&:complete?)
+    form_responses(:safety_plan).any?(&:complete?)
   end
 
   def completed_action_plan
@@ -31,14 +25,8 @@ class GbvKpiCalculationService
   end
 
   def completed_and_approved_action_plan
-    form_responses(:action_plan_form)
-      .any? do |response|
-        action_plan_complete = response
-          .subform(:action_plan_section)
-          .any?(:complete)
-
-        action_plan_complete && response.field(:action_plan_approved)
-      end
+    response = form_responses(:action_plan_form).first
+    response.field(:action_plan_approved) && response.subform(:action_plan_section).any?(:complete?)
   end
 
   def services_provided
@@ -89,13 +77,9 @@ class GbvKpiCalculationService
 
   def form_responses(form_section_unique_id)
     form_section = FormSection.find_by(unique_id: form_section_unique_id)
-    form_section_results = @child.send(form_section_unique_id)
+    form_section_results = @child.send(form_section_unique_id) || [@child.data]
 
     return FormSectionResponseList.new(responses: [], form_section: nil) unless form_section
-    if form_section_results.nil? || form_section_results.empty?
-      return FormSectionResponseList.new(responses: [], form_section: form_section)
-    end
-
     FormSectionResponseList.new(responses: form_section_results, form_section: form_section)
   end
 
