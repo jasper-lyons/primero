@@ -66,7 +66,7 @@ OptionsBox.propTypes = {
   hasData: PropTypes.bool,
   loading: PropTypes.bool,
   overlay: PropTypes.bool,
-  title: PropTypes.string,
+  title: PropTypes.node,
   to: PropTypes.node,
   type: PropTypes.string
 };

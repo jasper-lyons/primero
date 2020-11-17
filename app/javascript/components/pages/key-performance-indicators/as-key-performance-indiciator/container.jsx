@@ -4,6 +4,7 @@ import { DateRangeSelect } from "components/key-performance-indicators/component
 // NOTE:  Importing 'compoenent/dashboard' casues tests to fail through
 //        the 'pirates' module used in mocha I assume. No idea why this is.
 import OptionsBox from "components/dashboard/options-box";
+import { Tooltip } from "@material-ui/core";
 import { useI18n } from "components/i18n";
 
 import { forKPI as actionsForKPI } from "../action-creators";
@@ -28,7 +29,13 @@ const asKeyPerformanceIndicator = (identifier, defaultData) => {
 
       return (
         <OptionsBox
-          title={i18n.t(`key_performance_indicators.${identifier}.title`)}
+          title={
+            <Tooltip placement="center" title={i18n.t(`key_performance_indicators.${identifier}.helptext`)}>
+              <span>
+                {i18n.t(`key_performance_indicators.${identifier}.title`)}
+              </span>
+            </Tooltip>
+          }
           action={
             <DateRangeSelect
               ranges={dateRanges}
