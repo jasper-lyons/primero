@@ -4,7 +4,10 @@ class GbvKpiCalculationService
   end
 
   def completed_survivor_assessment
-    form_responses(:survivor_assessment_form).any?(&:complete?)
+    FormSectionResponse.new(
+      response: @child.data,
+      form_section: FormSection.find_by(unique_id: 'survivor_assessment_form')
+    ).complete?
   end
 
   def requires_safety_plan?
