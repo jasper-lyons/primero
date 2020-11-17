@@ -37,6 +37,7 @@ module KPI
     # rubocop:disable Metrics/MethodLength
     def search
       @search ||= search_model.search do
+        with :status, Record::STATUS_OPEN
         with :owned_by_groups, owned_by_groups
 
         adjust_solr_params do |params|
@@ -51,8 +52,6 @@ module KPI
             ]
           )
         end
-
-        paginate page: 1, per_page: 0
       end
     end
     # rubocop:enable Metrics/MethodLength
