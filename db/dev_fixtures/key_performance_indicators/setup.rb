@@ -38,7 +38,7 @@ primero_kpi.update_attributes(
     'email' => 'primero_kpi@primero.com',
     'disabled' => 'false',
     'agency_id' => unicef.id,
-    'role_id' => Role.find_by_name('GBV Manager').id,
+    'role_id' => Role.find_by_name('Superuser').id,
     'user_groups' => [UserGroup.find_by(name: 'Primero GBV')],
     'locale' => Primero::Application::LOCALE_ENGLISH,
     'location' => county_level_location.location_code
