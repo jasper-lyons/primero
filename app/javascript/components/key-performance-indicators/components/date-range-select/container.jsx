@@ -53,17 +53,17 @@ const DateRangeSelect = ({
             value={customRange.value}
             onClick={() => setShowRangePicker(true)}
           >
-            `$
             {i18n.toTime(
               "key_performance_indicators.date_format",
               customRange.from
-            )}{" "}
-            - $
+            )}
+            {" "}
+            -
+            {" "}
             {i18n.toTime(
               "key_performance_indicators.date_format",
               customRange.to
             )}
-            `
           </MenuItem>
         )}
       </Select>
