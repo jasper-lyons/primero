@@ -60,7 +60,7 @@ module KPI
     def columns
       @columns ||= search.facet_response
         .dig('facet_ranges', range_field.indexed_name, 'counts')
-        .each_cons(2)
+        .each_slice(2)
         .map(&:first)
     end
 
