@@ -81,7 +81,7 @@ module KPI
         [record['value'],
          record
           .dig('ranges', range_field.indexed_name, 'counts')
-          .each_cons(2)
+          .each_slice(2)
           .to_h]
       end.to_h
     end
