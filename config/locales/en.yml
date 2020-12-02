@@ -1192,7 +1192,7 @@ en:
       helptext: |
         This indicator counts the number of new incidents opened each month per reporting site.
         A reporting site is understood as the site where the User Organization is providing services and
-        where the incident was reported to the service provider."
+        where the incident was reported to the service provider.
     reporting_delay:
       title: "3. Reporting Delay"
       delay: "Delay"
@@ -1285,7 +1285,7 @@ en:
         This indicator measures how long cases are kept open, how long the case management
         process takes from the initial report to User Organization to case closure. The length of time is
         broken down by the following timeframe: less than 1 month; between 1 and 3 months; between
-        3-6 months; more than 6 months."
+        3-6 months; more than 6 months.
     case_closure_rate:
       title: "12. Case Closure Rate"
       reporting_site: "Reporting Site"
@@ -1306,7 +1306,7 @@ en:
       label: "Caseworkers per supervisor"
       helptext: |
         This indicator is the number of caseworkers a supervisor is supervising: the supervisor to case
-        worker ratio. This calculation is based on the system roles allocated on the platform."
+        worker ratio. This calculation is based on the system roles allocated on the platform.
     case_load:
       title: "15. Case Load"
       case_load: "Case Load"
@@ -1318,7 +1318,7 @@ en:
       helptext: |
         This indicator measures the average caseload per enabled caseworker based on active cases.
         The ratio of cases to case workers is divided based on the following breakdown: less than 10
-        open cases, between 10-20 open cases, between 21-30 open cases, more than 30 open cases."
+        open cases, between 10-20 open cases, between 21-30 open cases, more than 30 open cases.
     date_range_dialog:
       title: "Custom Date Range"
       description: "Once this change is applied, data will be selected from between the two dates bellow."
