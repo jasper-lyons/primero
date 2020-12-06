@@ -11,17 +11,16 @@ module KPI
     def search
       @search ||= Child.search do
         with :owned_by_groups, owned_by_groups
-
         facet :owned_by
       end
     end
 
     def data
       @data ||= [
-        create_case_load(owners, '10cases', 0..10),
-        create_case_load(owners, '20cases', 11..20),
-        create_case_load(owners, '21-30cases', 21..30),
-        create_case_load(owners, '30cases', 31..Float::INFINITY)
+        create_case_load(owners, '10cases', 0..9),
+        create_case_load(owners, '20cases', 10..19),
+        create_case_load(owners, '21-30cases', 20..29),
+        create_case_load(owners, '30cases', 30..Float::INFINITY)
       ]
     end
 
