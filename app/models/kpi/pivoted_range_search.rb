@@ -5,7 +5,7 @@ module KPI
   # usually of dates and a pivoted field for counting occurances within
   # those dates.
   class PivotedRangeSearch < KPI::Search
-    class <<self
+    class << self
       def range_field(field = nil)
         @range_field ||= field
       end
@@ -35,9 +35,8 @@ module KPI
     #    that sort of architectural decisions for linting reasons alone.
     #
     # rubocop:disable Metrics/MethodLength
-    def search
+    def search(&block)
       @search ||= search_model.search do
-        with :status, Record::STATUS_OPEN
         with :owned_by_groups, owned_by_groups
 
         adjust_solr_params do |params|
@@ -52,6 +51,8 @@ module KPI
             ]
           )
         end
+
+        block.call(self) if block
       end
     end
     # rubocop:enable Metrics/MethodLength

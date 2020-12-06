@@ -1,13 +1,11 @@
+# frozen_string_literal: true
+#
 module KPI
   class AverageReferrals < Search
-    REFERRED = 'Referred'.freeze
+    REFERRED = 'Referred'
 
     def action_plan_referral_statuses
       @action_plan_referral_statuses ||= SolrUtils.indexed_field_name(Child, :action_plan_referral_statuses)
-    end
-
-    def referred
-      'Referred'
     end
 
     def search

@@ -13,7 +13,7 @@ module KPI
             jsonb_array_elements(data->'action_plan_form') action_plan_forms,
             jsonb_array_elements(action_plan_forms->'gbv_follow_up_subform_section') gbv_follow_up_subform_sections
           where
-            data->'owned_by_groups' ?& array[:owned_by_groups]
+            data->'owned_by_groups' ?| array[:owned_by_groups]
             and (gbv_follow_up_subform_sections->>'followup_date')::date >= :from
             and (gbv_follow_up_subform_sections->>'followup_date')::date <= :to
         }, from: from, to: to, owned_by_groups: owned_by_groups])

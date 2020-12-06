@@ -7,6 +7,13 @@ module KPI
     search_model Child
     pivot_field :owned_by_location
     range_field :date_closure
+    
+    def search
+      super do |search|
+        search.with :date_closure, from..to
+        search.with :status, Record::STATUS_CLOSED
+      end
+    end
 
     def to_json
       {

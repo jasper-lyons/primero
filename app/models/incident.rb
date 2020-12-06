@@ -39,10 +39,14 @@ class Incident < ApplicationRecord
   end
 
   searchable do
-    date :incident_date_derived
-    date :date_of_first_report
+    # since we need to do an interval facet over ms
+    integer :reporting_delay_days
     string :status, as: 'status_sci'
     quicksearch_fields.each { |f| text_index(f) }
+  end
+
+  def reporting_delay_days
+    (date_of_first_report.to_date - incident_date_derived.to_date).to_i
   end
 
   after_initialize :set_unique_id

@@ -3,6 +3,14 @@ class GbvKpiCalculationService
     @child = child
   end
 
+  def case_lifetime_days
+    return 0 unless @child.status == Record::STATUS_CLOSED
+    closure_form = form_responses(:gbv_case_closure_form).first
+    date_created = closure_form.field(:created_at) || @child.created_at
+    date_closed = closure_form.field(:date_closure)
+    (date_closed.to_date - date_created.to_date).to_i
+  end
+
   def completed_survivor_assessment
     form_responses(:survivor_assessment_form).any?(&:complete?)
   end
@@ -26,7 +34,9 @@ class GbvKpiCalculationService
 
   def completed_and_approved_action_plan
     response = form_responses(:action_plan_form).first
-    response.field(:action_plan_approved) && response.subform(:action_plan_section).any?(:complete?)
+    response &&
+      response.field(:action_plan_approved) &&
+      response.subform(:action_plan_section).any?(&:complete?)
   end
 
   def services_provided
@@ -38,7 +48,7 @@ class GbvKpiCalculationService
 
   def action_plan_referral_statuses
     form_responses(:action_plan_form)
-      .subform(:action_plan_subform_section)
+      .subform(:action_plan_section)
       .field(:service_referral)
       .compact
   end
