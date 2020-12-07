@@ -27,13 +27,11 @@ describe KPI::AssessmentStatus, search: true do
     Child.create!({ data: {
       created_at: DateTime.parse('2020/10/27'),
       owned_by_groups: [group2, group4],
-      survivor_assessment_form: [{
-        assessment_emotional_state_start: 'Overwhelmed',
-        assessment_emotional_state_end: 'Resilient',
-        assessment_presenting_problem: 'Anxiety',
-        assessment_main_concerns: 'Poor sales',
-        assessment_current_situation: 'Poor'
-      }]
+      assessment_emotional_state_start: 'Overwhelmed',
+      assessment_emotional_state_end: 'Resilient',
+      assessment_presenting_problem: 'Anxiety',
+      assessment_main_concerns: 'Poor sales',
+      assessment_current_situation: 'Poor'
     }})
 
     Child.create!({ data: {

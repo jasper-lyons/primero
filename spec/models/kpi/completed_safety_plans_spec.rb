@@ -22,9 +22,7 @@ describe KPI::CompletedCaseSafetyPlans, search: true do
     Child.create!({ data: {
       created_at: DateTime.parse('2020/10/27'),
       owned_by_groups: [group2],
-      safety_plan: [{
-        safety_plan_needed: true
-      }]
+      safety_plan_needed: true
     }})
 
     Child.create!({ data: {

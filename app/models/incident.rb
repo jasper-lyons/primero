@@ -46,6 +46,7 @@ class Incident < ApplicationRecord
   end
 
   def reporting_delay_days
+    return 0 unless date_of_first_report && incident_date_derived
     (date_of_first_report.to_date - incident_date_derived.to_date).to_i
   end
 

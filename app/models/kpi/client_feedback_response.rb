@@ -44,7 +44,7 @@ module KPI
     end
 
     def valid_response?
-      assessed_field_values.compact.length == 0
+      assessed_field_values.compact.length > 0
     end
 
     def satisfied?

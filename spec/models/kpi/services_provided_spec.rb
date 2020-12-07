@@ -28,20 +28,16 @@ describe KPI::ServicesProvided, search: true do
     Child.create!({ data: {
       created_at: DateTime.parse('2020/10/27'),
       owned_by_groups: [group2],
-      action_plan_form: [{
-        gbv_follow_up_subform_section: [{
-          service_type_provided: service1
-        }]
+      gbv_follow_up_subform_section: [{
+        service_type_provided: service1
       }]
     }})
 
     Child.create!({ data: {
       created_at: DateTime.parse('2020/10/27'),
       owned_by_groups: [group3],
-      action_plan_form: [{
-        gbv_follow_up_subform_section: [{
-          service_type_provided: service2
-        }]
+      gbv_follow_up_subform_section: [{
+        service_type_provided: service2
       }]
     }})
 

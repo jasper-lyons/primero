@@ -26,10 +26,8 @@ describe KPI::CompletedCaseActionPlans, search: true do
     Child.create!({ data: {
       created_at: DateTime.parse('2020/10/27'),
       owned_by_groups: [group2],
-      action_plan_form: [{
-        action_plan_section: [{
-          service_type: 'test'
-        }]
+      action_plan_section: [{
+        service_type: 'test'
       }]
     }})
 

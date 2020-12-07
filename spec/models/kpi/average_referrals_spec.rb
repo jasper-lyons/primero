@@ -26,28 +26,24 @@ describe KPI::AverageReferrals, search: true do
     Child.create!({ data: {
       created_at: DateTime.parse('2020/10/27'),
       owned_by_groups: [group2],
-      action_plan_form: [{
-        action_plan_section: [{
-         service_referral: 'Referred'
-        }, {
-         service_referral: 'Referred'
-        }, {
-         service_referral: 'Referred'
-        }, {
-         service_referral: 'Referred'
-        }]
+      action_plan_section: [{
+        service_referral: 'Referred'
+      }, {
+        service_referral: 'Referred'
+      }, {
+        service_referral: 'Referred'
+      }, {
+        service_referral: 'Referred'
       }]
     }})
 
     Child.create!({ data: {
       created_at: DateTime.parse('2020/10/27'),
       owned_by_groups: [group3],
-      action_plan_form: [{
-        action_plan_section: [{
-          service_referral: 'Referred'
-        }, {
-         service_referral: 'Referred'
-        }]
+      action_plan_section: [{
+        service_referral: 'Referred'
+      }, {
+        service_referral: 'Referred'
       }]
     }})
 

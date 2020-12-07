@@ -24,6 +24,11 @@ describe KPI::CaseClosureRate, search: true do
       admin_level: 2
     )
 
+    form(:gbv_case_closure_form, [
+      field(:created_at),
+      field(:date_closure)
+    ])
+
     Child.create!({ data: {
       created_at: DateTime.parse('2019/10/15'),
       status: Record::STATUS_CLOSED,

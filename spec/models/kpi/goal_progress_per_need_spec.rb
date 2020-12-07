@@ -30,28 +30,24 @@ describe KPI::GoalProgressPerNeed, search: true do
     Child.create!({ data: {
       created_at: DateTime.parse('2020/10/15'),
       owned_by_groups: [group2],
-      action_plan_form: [{
-        gbv_follow_up_subform_section: [{
-          gbv_assessment_progress_safety: 'n_a',
-          gbv_assessment_progress_health: 'in_progress',
-          gbv_assessment_progress_psychosocial: 'in_progress',
-          gbv_assessment_progress_justice: 'met',
-          gbv_assessment_other_goals: 'met'
-        }]
+      gbv_follow_up_subform_section: [{
+        gbv_assessment_progress_safety: 'n_a',
+        gbv_assessment_progress_health: 'in_progress',
+        gbv_assessment_progress_psychosocial: 'in_progress',
+        gbv_assessment_progress_justice: 'met',
+        gbv_assessment_other_goals: 'met'
       }]
     }})
 
     Child.create!({ data: {
       created_at: DateTime.parse('2020/10/15'),
       owned_by_groups: [group3],
-      action_plan_form: [{
-        gbv_follow_up_subform_section: [{
-          gbv_assessment_progress_safety: 'met',
-          gbv_assessment_progress_health: 'in_progress',
-          gbv_assessment_progress_psychosocial: 'in_progress',
-          gbv_assessment_progress_justice: 'in_progress',
-          gbv_assessment_other_goals: 'met'
-        }]
+      gbv_follow_up_subform_section: [{
+        gbv_assessment_progress_safety: 'met',
+        gbv_assessment_progress_health: 'in_progress',
+        gbv_assessment_progress_psychosocial: 'in_progress',
+        gbv_assessment_progress_justice: 'in_progress',
+        gbv_assessment_other_goals: 'met'
       }]
     }})
     Sunspot.commit

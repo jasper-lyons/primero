@@ -24,18 +24,14 @@ describe KPI::TimeFromCaseOpenToClose, search: true do
       created_at: DateTime.parse('2019/10/15'),
       status: Record::STATUS_CLOSED,
       owned_by_groups: [group2],
-      gbv_case_closure_form: [{
-        date_closure: DateTime.parse('2020/10/01')
-      }]
+      date_closure: DateTime.parse('2020/10/01')
     }})
 
     Child.create!({ data: {
       owned_by_groups: [group3],
       status: Record::STATUS_CLOSED,
-      gbv_case_closure_form: [{
-        created_at: DateTime.parse('2020/05/15'),
-        date_closure: DateTime.parse('2020/10/01')
-      }]
+      created_at: DateTime.parse('2020/05/15'),
+      date_closure: DateTime.parse('2020/10/01')
     }})
 
     Sunspot.commit
