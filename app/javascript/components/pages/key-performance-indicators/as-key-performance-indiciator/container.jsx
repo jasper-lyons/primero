@@ -5,10 +5,14 @@ import { DateRangeSelect } from "components/key-performance-indicators/component
 //        the 'pirates' module used in mocha I assume. No idea why this is.
 import OptionsBox from "components/dashboard/options-box";
 import { Tooltip } from "@material-ui/core";
+import { Help } from "@material-ui/icons";
 import { useI18n } from "components/i18n";
 
 import { forKPI as actionsForKPI } from "../action-creators";
 import { forKPI as selectorsForKPI } from "../selectors";
+
+import makeStyles from "@material-ui/styles/makeStyles";
+import styles from "./styles.css";
 
 const asKeyPerformanceIndicator = (identifier, defaultData) => {
   return Visualizer => {
@@ -20,6 +24,7 @@ const asKeyPerformanceIndicator = (identifier, defaultData) => {
 
     return enhance(({ data, fetchData, dateRanges, ...props }) => {
       const i18n = useI18n();
+      const css = makeStyles(styles)();
 
       const [currentDateRange, setCurrentDateRange] = useState(dateRanges[0]);
 
@@ -27,14 +32,12 @@ const asKeyPerformanceIndicator = (identifier, defaultData) => {
         fetchData(currentDateRange);
       }, [currentDateRange]);
 
+      const [helptextOpen, setHelptextOpen] = useState(false);
+
       return (
         <OptionsBox
           title={
-            <Tooltip placement="center" title={i18n.t(`key_performance_indicators.${identifier}.helptext`)}>
-              <span>
-                {i18n.t(`key_performance_indicators.${identifier}.title`)}
-              </span>
-            </Tooltip>
+            i18n.t(`key_performance_indicators.${identifier}.title`)
           }
           action={
             <DateRangeSelect
@@ -46,6 +49,17 @@ const asKeyPerformanceIndicator = (identifier, defaultData) => {
           }
         >
           <Visualizer identifier={identifier} data={data} {...props} />
+          <div>
+            <div className={css.helptextHeader}>
+              <Help
+                title="Learn about this KPI."
+                className={css.helptextButton}
+                onClick={ () => setHelptextOpen(!helptextOpen) } />
+            </div>
+            { helptextOpen && <p className={css.helptextBody}>
+              {i18n.t(`key_performance_indicators.${identifier}.helptext`)}
+            </p> }
+          </div>
         </OptionsBox>
       );
     });
