@@ -50,9 +50,10 @@ const asKeyPerformanceIndicator = (identifier, defaultData) => {
         >
           <Visualizer identifier={identifier} data={data} {...props} />
           <div>
-            <div className={css.helptextHeader}>
+            <div
+              title={i18n.t(`key_performance_indicators.helptext.helptext`)}
+              className={css.helptextHeader}>
               <Help
-                title="Learn about this KPI."
                 className={css.helptextButton}
                 onClick={ () => setHelptextOpen(!helptextOpen) } />
             </div>

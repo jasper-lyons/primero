@@ -1179,6 +1179,8 @@ en:
       1-month: "< 1 Month"
       3-6months: "3 - 6 Months"
       7-months: "> 6 Months"
+    helptext:
+      helptext: "Learn about this KPI."
     number_of_cases:
       title: "1. Number of recorded Cases"
       reporting_site: "Reporting Site"
@@ -1287,14 +1289,14 @@ en:
         broken down by the following timeframe: less than 1 month; between 1 and 3 months; between
         3-6 months; more than 6 months.
     case_closure_rate:
-      title: "12. Case Closure Rate"
+      title: "13. Case Closure Rate"
       reporting_site: "Reporting Site"
       helptext: |
         This indicator measures the count of cases closed per month per reporting site. A reporting site
         is understood as the site where the User Organization is providing services and where the
         incident was reported to the service provider.
     client_satisfaction_rate:
-      title: "13. Client Satisfaction Rate"
+      title: "14. Client Satisfaction Rate"
       label: "Client Satisfaction"
       helptext: |
         This indicator measures the percentage of survivors who completed the Client Feedback Survey
@@ -1302,13 +1304,13 @@ en:
         informed by the completion of the Client Feedback form on GBVIMS+ by a staff member other
         than the caseworker who provided the service to the survivor.
     supervisor_to_caseworker_ratio:
-      title: "14. Supervisor To Caseworker Ratio"
+      title: "15. Supervisor To Caseworker Ratio"
       label: "Caseworkers per supervisor"
       helptext: |
         This indicator is the number of caseworkers a supervisor is supervising: the supervisor to case
         worker ratio. This calculation is based on the system roles allocated on the platform.
     case_load:
-      title: "15. Case Load"
+      title: "16. Case Load"
       case_load: "Case Load"
       percent: "percentage of caseworkers with caseload"
       10cases: "< 10 Cases"
