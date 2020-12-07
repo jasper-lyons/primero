@@ -13,7 +13,7 @@ module KPI
         { key: '0-3days', u: 3 },
         { key: '4-5days', l: 4, u: 5 },
         { key: '6-14days', l: 6, u: 14 },
-        { key: '15-30days', l: 15 + 1, u: 30 },
+        { key: '15-30days', l: 15 , u: 30 },
         { key: '1-3months', l: 31, u: 90 },
         { key: '4months', l: 91 }
       ]
