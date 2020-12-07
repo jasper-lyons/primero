@@ -25,28 +25,24 @@ describe KPI::AverageFollowupMeetingsPerCase, search: true do
     Child.create!({ data: {
       created_at: DateTime.parse('2020/10/15'),
       owned_by_groups: [group2],
-      action_plan_form: [{
-        gbv_follow_up_subform_section: [{
-          followup_date: DateTime.parse('2020/10/20')
-        },{
-          followup_date: DateTime.parse('2020/10/20')
-        }, {
-          followup_date: DateTime.parse('2020/10/20')
-        }, {
-          followup_date: DateTime.parse('2020/10/20')
-        }]
+      gbv_follow_up_subform_section: [{
+        followup_date: DateTime.parse('2020/10/20')
+      },{
+        followup_date: DateTime.parse('2020/10/20')
+      }, {
+        followup_date: DateTime.parse('2020/10/20')
+      }, {
+        followup_date: DateTime.parse('2020/10/20')
       }]
     }}) 
 
     Child.create!({ data: {
       created_at: DateTime.parse('2020/10/15'),
       owned_by_groups: [group3],
-      action_plan_form: [{
-        gbv_follow_up_subform_section: [{
-          followup_date: DateTime.parse('2020/10/20')
-        },{
-          followup_date: DateTime.parse('2020/10/20')
-        }]
+      gbv_follow_up_subform_section: [{
+        followup_date: DateTime.parse('2020/10/20')
+      },{
+        followup_date: DateTime.parse('2020/10/20')
       }]
     }}) 
 

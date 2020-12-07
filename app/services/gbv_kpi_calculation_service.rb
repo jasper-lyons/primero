@@ -74,9 +74,11 @@ class GbvKpiCalculationService
   end
 
   def satisfaction_status
-    return nil unless @child.client_feedback
+    feedback_responses = KPI::ClientFeedbackResponseList.new(
+      responses: access_migrated_forms(:client_feedback)
+    )
 
-    feedback_responses = KPI::ClientFeedbackResponseList.new(responses: @child.client_feedback)
+    return nil unless feedback_responses.has_responses?
 
     if feedback_responses.satisfied >= feedback_responses.unsatisfied
       'satisfied'
@@ -87,10 +89,19 @@ class GbvKpiCalculationService
 
   def form_responses(form_section_unique_id)
     form_section = FormSection.find_by(unique_id: form_section_unique_id)
-    form_section_results = @child.send(form_section_unique_id) || [@child.data]
+    form_section_results = access_migrated_forms(form_section_unique_id)
 
     return FormSectionResponseList.new(responses: [], form_section: nil) unless form_section
     FormSectionResponseList.new(responses: form_section_results, form_section: form_section)
+  end
+
+  # Previously forms whos parents were 'case' appeared as attributed in the
+  # Chilkd.data field. Now, these forms treat the Child as the form, meaning
+  # that they do not exist as properties on the Child anymore. To handle this
+  # we can use this method until we're sure that all top level forms use the
+  # Child.data attribute as the form.
+  def access_migrated_forms(form_section_unique_id)
+    @child.respond_to?(form_section_unique_id) && @child.send(form_section_unique_id) || [@child.data]
   end
 
   def percentage_goals_met(goals)

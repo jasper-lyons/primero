@@ -43,6 +43,10 @@ module KPI
                  )
     end
 
+    def valid_response?
+      assessed_field_values.compact.length == 0
+    end
+
     def satisfied?
       tally['yes'] >= tally['no']
     end

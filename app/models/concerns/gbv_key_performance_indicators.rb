@@ -5,9 +5,6 @@ module GBVKeyPerformanceIndicators
   extend ActiveSupport::Concern
 
   included do
-    store_accessor :data, :survivor_assessment_form, :safety_plan,
-                   :action_plan_form, :client_feedback, :gbv_case_closure_form
-
     searchable do
       %i[completed_survivor_assessment safety_plan_required completed_safety_plan completed_action_plan
          completed_and_approved_action_plan duplicate].each { |f| boolean(f) }
