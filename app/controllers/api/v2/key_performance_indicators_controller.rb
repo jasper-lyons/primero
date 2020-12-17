@@ -4,7 +4,11 @@ class Api::V2::KeyPerformanceIndicatorsController < ApplicationApiController
   def show
     authorize! kpi_permission, KPI
     search_klass = KPI::Search.find(kpi_id)
-    search = search_klass.new(from, to, current_user.user_group_unique_ids)
+    search = search_klass.new(
+      from,
+      to,
+      current_user.user_group_unique_ids,
+      current_user.agency.unique_id)
     @data = search.to_json
   end
 

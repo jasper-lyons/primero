@@ -41,6 +41,7 @@ module KPI
       @search ||= search_model.search do
         with :created_at, from..to
         with :owned_by_groups, owned_by_groups
+        with :owned_by_agency_id, owned_by_agency_id
 
         adjust_solr_params do |params|
           params[:facet] = true

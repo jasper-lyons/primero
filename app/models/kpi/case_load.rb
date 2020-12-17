@@ -10,6 +10,7 @@ module KPI
   class CaseLoad < Search
     def search
       @search ||= Child.search do
+        with :owned_by_agency_id, owned_by_agency_id
         with :owned_by_groups, owned_by_groups
         facet :owned_by
       end

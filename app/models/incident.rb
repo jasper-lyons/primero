@@ -9,6 +9,7 @@ class Incident < ApplicationRecord
   include Flaggable
   include Alertable
   include Attachable
+  include KPI::GBVIncident
   # include IncidentMonitoringRecording #TODO: Refactor with Violations
 
   store_accessor(
@@ -39,15 +40,8 @@ class Incident < ApplicationRecord
   end
 
   searchable do
-    # since we need to do an interval facet over ms
-    integer :reporting_delay_days
     string :status, as: 'status_sci'
     quicksearch_fields.each { |f| text_index(f) }
-  end
-
-  def reporting_delay_days
-    return 0 unless date_of_first_report && incident_date_derived
-    (date_of_first_report.to_date - incident_date_derived.to_date).to_i
   end
 
   after_initialize :set_unique_id

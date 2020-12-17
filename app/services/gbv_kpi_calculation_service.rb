@@ -1,12 +1,12 @@
 class GbvKpiCalculationService
-  def initialize(child)
-    @child = child
+  def initialize(record)
+    @record = record
   end
 
   def case_lifetime_days
-    return 0 unless @child.status == Record::STATUS_CLOSED
+    return 0 unless @record.status == Record::STATUS_CLOSED
     closure_form = form_responses(:gbv_case_closure_form).first
-    date_created = closure_form.field(:created_at) || @child.created_at
+    date_created = closure_form.field(:created_at) || @record.created_at
     date_closed = closure_form.field(:date_closure)
     (date_closed.to_date - date_created.to_date).to_i
   end
@@ -87,6 +87,17 @@ class GbvKpiCalculationService
     end
   end
 
+  # This is for incidents only. Currently we're using concerns to capture
+  # the information about which searches and kpi calculation fields are
+  # required for each model. I'm not certain this is a good strategy but
+  # I don't have a better one.
+  def reporting_delay_days
+    reported_at = @record.date_of_first_report
+    occured_at = @record.incident_date_derived
+    return 0 unless reported_at && occured_at
+    (reported_at.to_date - occured_at.to_date).to_i
+  end
+
   def form_responses(form_section_unique_id)
     form_section = FormSection.find_by(unique_id: form_section_unique_id)
     form_section_results = access_migrated_forms(form_section_unique_id)
@@ -95,13 +106,8 @@ class GbvKpiCalculationService
     FormSectionResponseList.new(responses: form_section_results, form_section: form_section)
   end
 
-  # Previously forms whos parents were 'case' appeared as attributed in the
-  # Chilkd.data field. Now, these forms treat the Child as the form, meaning
-  # that they do not exist as properties on the Child anymore. To handle this
-  # we can use this method until we're sure that all top level forms use the
-  # Child.data attribute as the form.
   def access_migrated_forms(form_section_unique_id)
-    @child.respond_to?(form_section_unique_id) && @child.send(form_section_unique_id) || [@child.data]
+    @record.respond_to?(form_section_unique_id) && @record.send(form_section_unique_id) || [@record.data]
   end
 
   def percentage_goals_met(goals)

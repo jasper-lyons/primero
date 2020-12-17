@@ -53,7 +53,7 @@ describe KPI::CaseLoad, search: true do
 
   with 'No cases in the users groups' do
     it 'should return a case load of 0 in all categories' do
-      json = KPI::CaseLoad.new(nil, nil, ['group1']).to_json
+      json = KPI::CaseLoad.new(nil, nil, ['group1'], @agency.unique_id).to_json
       case_loads = json[:data].map { |case_load| case_load.map(&:second) }.to_h
       expect(case_loads['10cases']).to eq(0)
       expect(case_loads['20cases']).to eq(0)
@@ -64,7 +64,7 @@ describe KPI::CaseLoad, search: true do
 
   with 'One case by a single user' do
     it 'should return a case load of 1.0 for < 10 cases' do
-      json = KPI::CaseLoad.new(nil, nil, ['group2']).to_json
+      json = KPI::CaseLoad.new(nil, nil, ['group2'], @agency.unique_id).to_json
       case_loads = json[:data].map { |case_load| case_load.map(&:second) }.to_h
       expect(case_loads['10cases']).to eq(1.0)
       expect(case_loads['20cases']).to eq(0)
@@ -75,7 +75,7 @@ describe KPI::CaseLoad, search: true do
 
   with '10 cases by a single user' do
     it 'should return a case load of 1.0 for < 20 cases' do
-      json = KPI::CaseLoad.new(nil, nil, ['group3']).to_json
+      json = KPI::CaseLoad.new(nil, nil, ['group3'], @agency.unique_id).to_json
       case_loads = json[:data].map { |case_load| case_load.map(&:second) }.to_h
       expect(case_loads['10cases']).to eq(0)
       expect(case_loads['20cases']).to eq(1.0)
@@ -86,7 +86,7 @@ describe KPI::CaseLoad, search: true do
 
   with '11 cases between 2 users' do
     it 'should return a case load of 0.5 for < 10 cases and 0.5 for < 20' do
-      json = KPI::CaseLoad.new(nil, nil, ['group2', 'group3']).to_json
+      json = KPI::CaseLoad.new(nil, nil, ['group2', 'group3'], @agency.unique_id).to_json
       case_loads = json[:data].map { |case_load| case_load.map(&:second) }.to_h
       expect(case_loads['10cases']).to eq(0.5)
       expect(case_loads['20cases']).to eq(0.5)
