@@ -20,7 +20,7 @@ class FormSectionResponse < ValueObject
     return false unless response
     return false if mandatory_fields.empty?
 
-    mandatory_fields.all? { |f| field(f.name).present? }
+    mandatory_fields.all? { |f| !field(f.name).nil? }
   end
 
   def field(name)

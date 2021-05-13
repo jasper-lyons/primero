@@ -18,7 +18,8 @@ describe Kpi::CompletedCaseActionPlans, search: true do
     form(:action_plan_form, [
            field(:action_plan_section,
                  subform_section: form(:action_plan_subform_section, [
-                                         field(:service_type, mandatory_for_completion: true)
+                                         field(:service_type, mandatory_for_completion: true),
+                                         field(:written_consent, mandatory_for_completion: true)
                                        ]))
          ])
 
@@ -27,7 +28,8 @@ describe Kpi::CompletedCaseActionPlans, search: true do
                     created_at: DateTime.parse('2020/10/27'),
                     owned_by_groups: [group2],
                     action_plan_section: [{
-                      service_type: 'test'
+                      service_type: 'test',
+                      written_consent: false
                     }]
                   })
 
